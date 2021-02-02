@@ -11,5 +11,7 @@
     <string name="button_eight">8</string>
     <string name="button_nine">9</string>
     <string name="button_zero">0</string>
-    <string name="button_brake">&#8592;</string>
+    <string name="button_backspace">&#8592;</string>
+    <string name="error_pin">Неверный пин-код!\nПопробуйте ещё.</string>
+    <string name="invalid_input">Некорректный ввод</string>
 </resources>

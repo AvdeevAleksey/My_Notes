@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/ic_round_brightness_1_24" />
+            android:src="@drawable/ic_round_brightness_1_24"
+            android:outlineAmbientShadowColor="@color/colorPrimary"/>
         <ImageView
             android:id="@+id/secondImageView"
             android:layout_width="wrap_content"
@@ -67,30 +68,64 @@
         android:columnCount="3"
         android:orientation="horizontal"
         android:layout_marginVertical="26dp">
-        <Button android:text="@string/button_one"
+        <Button
+            android:id="@+id/btnOne"
+            android:text="@string/button_one"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_two"
+        <Button
+            android:id="@+id/btnTwo"
+            android:text="@string/button_two"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_three"
+        <Button
+            android:id="@+id/btnThree"
+            android:text="@string/button_three"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_for"
+        <Button
+            android:id="@+id/btnFor"
+            android:text="@string/button_for"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_five"
+        <Button
+            android:id="@+id/btnFive"
+            android:text="@string/button_five"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_six"
+        <Button
+            android:id="@+id/btnSix"
+            android:text="@string/button_six"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_seven"
+        <Button
+            android:id="@+id/btnSeven"
+            android:text="@string/button_seven"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_eight"
+        <Button
+            android:id="@+id/btnEight"
+            android:text="@string/button_eight"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_nine"
+        <Button
+            android:id="@+id/btnNine"
+            android:text="@string/button_nine"
             android:textSize="20sp"/>
         <Button android:text=""
             android:visibility="invisible"/>
-        <Button android:text="@string/button_zero"
+        <Button
+            android:id="@+id/btnZero"
+            android:text="@string/button_zero"
             android:textSize="20sp"/>
-        <Button android:text="@string/button_brake"
+        <Button
+            android:id="@+id/btnBackspace"
+            android:text="@string/button_backspace"
             android:textSize="20sp"/>
     </GridLayout>
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginVertical="26dp"
+        android:textSize="26sp"
+        android:textColor="@color/colorPrimary"
+        android:text="">
+    </TextView>
 
 </LinearLayout>
