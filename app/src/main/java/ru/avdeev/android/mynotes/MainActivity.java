@@ -136,8 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showMyMessage(R.string.invalid_input, MainActivity.this);
             }
         }
-
-
     }
 
     public void printMyText(int id) {
