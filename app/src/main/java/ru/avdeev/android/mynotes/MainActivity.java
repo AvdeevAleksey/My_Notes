@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
+// Поменять действия этой процедуры на сохранение в строковую переменную вводимых символов
     public void printMyText(int id) {
         i=i+1;
         errorTextView.setText(errorTextView.getText().toString() + getString(id));
@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void checkMyPin() {
+        // В этом блоке проверяем пин-код
         if (errorTextView.getText().toString().equals("1111")) {
             errorTextView.setText("Успешный логин");
         } else {
