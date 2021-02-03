@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void checkMyPin() {
         // В этом блоке проверяем пин-код
         if (errorTextView.getText().toString().equals("1111")) {
+        // Сюда писать код по открытию Активити со списком заметок
             errorTextView.setText("Успешный логин");
         } else {
             errorTextView.setText("");
