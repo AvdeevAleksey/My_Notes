@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".EnterPasswordActivity"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".NotesActivity"/>
+        <activity android:name=".NewNoteActivity"/>
 
     </application>
 

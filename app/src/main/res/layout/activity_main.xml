@@ -1,131 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginVertical="26dp">
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/enterPinTextView"
-            android:text="@string/enter_pin"
-            android:textSize="50sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="76dp">
-        <ImageView
-            android:id="@+id/firstImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_round_brightness_1_24"
-            android:outlineAmbientShadowColor="@color/colorPrimary"/>
-        <ImageView
-            android:id="@+id/secondImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_round_brightness_1_24" />
-        <ImageView
-            android:id="@+id/thirdImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_round_brightness_1_24" />
-        <ImageView
-            android:id="@+id/fourthImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_round_brightness_1_24" />
-
-    </LinearLayout>
-
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="3"
-        android:orientation="horizontal"
-        android:layout_marginVertical="26dp">
-        <Button
-            android:id="@+id/btnOne"
-            android:text="@string/button_one"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnTwo"
-            android:text="@string/button_two"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnThree"
-            android:text="@string/button_three"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnFor"
-            android:text="@string/button_for"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnFive"
-            android:text="@string/button_five"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnSix"
-            android:text="@string/button_six"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnSeven"
-            android:text="@string/button_seven"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnEight"
-            android:text="@string/button_eight"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnNine"
-            android:text="@string/button_nine"
-            android:textSize="20sp"/>
-        <Button android:text=""
-            android:visibility="invisible"/>
-        <Button
-            android:id="@+id/btnZero"
-            android:text="@string/button_zero"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/btnBackspace"
-            android:text="@string/button_backspace"
-            android:textSize="20sp"/>
-    </GridLayout>
-
-    <TextView
-        android:id="@+id/errorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginVertical="26dp"
-        android:textSize="26sp"
-        android:textColor="@color/colorPrimary"
-        android:text="">
-    </TextView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

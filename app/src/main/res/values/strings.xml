@@ -16,6 +16,7 @@
     <string name="invalid_input">Некорректный ввод</string>
     <string name="new_pin">Новый пин-код:</string>
     <string name="save">Сохранить</string>
+    <string name="correct_pin">Верный пин-код</string>
     <string name="change_pin">Изменить пин-код</string>
     <string name="title_of_note">Заголовок заметки</string>
     <string name="body_of_note">Тело заметки</string>

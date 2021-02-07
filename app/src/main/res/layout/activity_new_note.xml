@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="26dp"
-                android:hint="@string/title_of_note"/>
+                android:hint="@string/title_of_note"
+                android:inputType="textMultiLine"/>
             <EditText
                 android:id="@+id/bodyNotes"
                 android:layout_width="match_parent"
@@ -66,7 +67,6 @@
                     android:id="@+id/btnViewHidePin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0,5"
                     android:src="@drawable/ic_baseline_calendar_today_24"/>
             </LinearLayout>
         </LinearLayout>
