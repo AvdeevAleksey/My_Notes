@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.btnBackspace: {
                 if (i<2){
-                    showMyMessage(R.string.invalid_input, MainActivity.this);
+                    Toster.showMyMessage(R.string.invalid_input, MainActivity.this);
                 } else {
                     errorTextView.setText(errorTextView.getText().toString().substring(0, errorTextView.getText().toString().length() - 1));
                     i = i - 2;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             default: {
-                showMyMessage(R.string.invalid_input, MainActivity.this);
+                Toster.showMyMessage(R.string.invalid_input, MainActivity.this);
             }
         }
     }
@@ -199,13 +199,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             i = 0;
             inputAttempt();
         }
-    }
-    public static void showMyMessage(int massage, Context context) {
-        String text = context.getString(massage);
-        SpannableStringBuilder biggerText = new SpannableStringBuilder(text);
-        biggerText.setSpan(new RelativeSizeSpan(1.35f), 0, text.length(), 0);
-        Toast toast = Toast.makeText(context, biggerText, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.show();
     }
 }

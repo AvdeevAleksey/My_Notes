@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Notes</string>
+    <string name="app_name">Заметки</string>
     <string name="enter_pin">Введите пин:</string>
     <string name="button_one">1</string>
     <string name="button_two">2</string>
@@ -14,4 +14,11 @@
     <string name="button_backspace">&#8592;</string>
     <string name="error_pin">Неверный пин-код!\nПопробуйте ещё.</string>
     <string name="invalid_input">Некорректный ввод</string>
+    <string name="new_pin">Новый пин-код:</string>
+    <string name="save">Сохранить</string>
+    <string name="change_pin">Изменить пин-код</string>
+    <string name="title_of_note">Заголовок заметки</string>
+    <string name="body_of_note">Тело заметки</string>
+    <string name="deadline">Крайний срок</string>
+    <string name="there_is_a_deadline">Есть крайний срок</string>
 </resources>

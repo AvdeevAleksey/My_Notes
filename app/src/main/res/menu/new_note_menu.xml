@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/notesSettings"
+        android:icon="@drawable/ic_sharp_save_24"
+        android:title="@string/change_pin"
+        app:showAsAction="ifRoom">
+    </item>
+</menu>
