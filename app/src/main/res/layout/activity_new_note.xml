@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".NewNoteActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="6dp"
+        app:title="@string/new_note"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        android:background="@color/colorAppBar"
-        />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@color/colorAppBar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,17 +32,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="26dp"
+                android:layout_marginVertical="16dp"
                 android:hint="@string/title_of_note"
-                android:inputType="textMultiLine"/>
+                android:inputType="text"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <EditText
                 android:id="@+id/bodyNotes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
                 android:hint="@string/body_of_note"
-                android:lines="10"
                 android:inputType="textMultiLine"
                 />
             <CheckBox
@@ -56,13 +57,14 @@
                 android:orientation="horizontal"
                 android:layout_marginVertical="16dp"
                 android:layout_marginHorizontal="16dp">
-                <TextView
-                    android:id="@+id/deadlineTextBox"
+                <EditText
+                    android:id="@+id/deadlineEditText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="26sp"
-                    android:text="@string/deadline"/>
+                    android:textSize="20sp"
+                    android:inputType="datetime"
+                    android:hint="@string/deadline"/>
                 <ImageButton
                     android:id="@+id/btnViewHidePin"
                     android:layout_width="wrap_content"

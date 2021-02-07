@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnStart = findViewById(R.id.btnOne);
-
+        btnStart = findViewById(R.id.btnStart);
+        btnStart.setOnClickListener(MainActivity.this);
     }
 
+    @Override
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, EnterPasswordActivity.class);
         startActivity(intent);
