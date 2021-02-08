@@ -57,19 +57,26 @@
                 android:orientation="horizontal"
                 android:layout_marginVertical="16dp"
                 android:layout_marginHorizontal="16dp">
+
                 <EditText
                     android:id="@+id/deadlineEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="20sp"
+                    android:longClickable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:hint="@string/deadline"
                     android:inputType="datetime"
-                    android:hint="@string/deadline"/>
+                    android:textSize="20sp" />
+
                 <ImageButton
-                    android:id="@+id/btnViewHidePin"
+                    android:id="@+id/btnCalendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_calendar_today_24"/>
+                    android:longClickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/ic_baseline_calendar_today_24" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -20,7 +20,7 @@
     <string name="correct_pin">Верный пин-код</string>
     <string name="change_pin">Изменить пин-код</string>
     <string name="title_of_note">Заголовок заметки</string>
-    <string name="body_of_note">Тело заметки\n\n\n\n\n</string>
+    <string name="body_of_note">Тело заметки\n\n\n</string>
     <string name="deadline">Крайний срок</string>
     <string name="there_is_a_deadline">Есть крайний срок</string>
     <string name="settings">Настройки</string>
