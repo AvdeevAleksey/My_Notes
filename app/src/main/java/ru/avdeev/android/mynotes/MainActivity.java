@@ -14,21 +14,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    Button btnStart;
+    public static boolean pin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnStart = findViewById(R.id.btnStart);
-        btnStart.setOnClickListener(MainActivity.this);
+        isTherePin();
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, EnterPasswordActivity.class);
-        startActivity(intent);
+    private void isTherePin() {
+        //  Вместо следующей строки запрос на наличие пин-кода
+        pin = true;
+        if (pin) {
+            Intent intent = new Intent(MainActivity.this, EnterPasswordActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
     }
 }

@@ -46,24 +46,22 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
         editTextDateTime = (EditText) findViewById(R.id.deadlineEditText);
         buttonCalendar = (ImageButton) findViewById(R.id.btnCalendar);
         deadlineChkBox = (CheckBox) findViewById(R.id.deadlineCheckBox);
+        editTextDateTime.setEnabled(false);
+        buttonCalendar.setEnabled(false);
 
         deadlineChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    editTextDateTime.setFocusable(true);
-                    editTextDateTime.setLongClickable(true);
-                    editTextDateTime.setCursorVisible(true);
-                    buttonCalendar.setLongClickable(true);
-                    buttonCalendar.setFocusable(true);
+                    editTextDateTime.setEnabled(true);
+                    buttonCalendar.setEnabled(true);
+                    setInitialDateTime();
                     editTextDateTime.setOnClickListener(NewNoteActivity.this::onClick);
                     buttonCalendar.setOnClickListener(NewNoteActivity.this::onClick);
                 } else {
-                    editTextDateTime.setFocusable(false);
-                    editTextDateTime.setLongClickable(false);
-                    editTextDateTime.setCursorVisible(false);
-                    buttonCalendar.setLongClickable(false);
-                    buttonCalendar.setFocusable(false);
+                    editTextDateTime.setText(R.string.deadline);
+                    editTextDateTime.setEnabled(false);
+                    buttonCalendar.setEnabled(false);
                 }
             }
         });
@@ -95,8 +93,6 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public boolean onSupportNavigateUp() {

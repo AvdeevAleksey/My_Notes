@@ -1,5 +1,6 @@
 package ru.avdeev.android.mynotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import static ru.avdeev.android.mynotes.MainActivity.pin;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -37,7 +40,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+        //onBackPressed();
+
+        //  Если пинкода нет, то перехода в NotesActivity не будет до его набора
+
+        if (pin) {
+            Intent intent = new Intent(SettingsActivity.this, NotesActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

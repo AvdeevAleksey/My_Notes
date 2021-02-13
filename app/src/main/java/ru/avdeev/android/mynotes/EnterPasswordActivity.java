@@ -150,31 +150,31 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
                 break;
             }
             case 1: {
-                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
+                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
                 secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 fourthCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 break;
             }
             case 2: {
-                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
+                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
                 thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 fourthCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 break;
             }
             case 3: {
-                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
+                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
                 fourthCircle.setImageResource(R.drawable.ic_round_brightness_1_24);
                 break;
             }
             case 4: {
-                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
-                fourthCircle.setImageResource(R.drawable.ic_round_brightness_1_24_yallow);
+                firstCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                secondCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                thirdCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
+                fourthCircle.setImageResource(R.drawable.ic_round_brightness_1_24_another);
                 checkMyPin();
                 break;
             }
