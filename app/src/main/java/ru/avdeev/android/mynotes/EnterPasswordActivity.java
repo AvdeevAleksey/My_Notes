@@ -7,9 +7,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Map;
+import java.util.Set;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EnterPasswordActivity extends AppCompatActivity implements View.OnClickListener {
+public class EnterPasswordActivity extends AppCompatActivity implements View.OnClickListener, Keystore {
 
     Button btnOne;
     Button btnTwo;
@@ -28,6 +32,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     ImageView thirdCircle;
     ImageView fourthCircle;
     public static int i = 0;
+    private String enteredPin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,61 +74,71 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
         }
         switch (view.getId()) {
             case R.id.btnZero: {
+                i=i+1;
                 printMyText(R.string.button_zero);
                 inputAttempt();
                 break;
             }
             case R.id.btnOne: {
+                i=i+1;
                 printMyText(R.string.button_one);
                 inputAttempt();
                 break;
             }
             case R.id.btnTwo: {
+                i=i+1;
                 printMyText(R.string.button_two);
                 inputAttempt();
                 break;
             }
             case R.id.btnThree: {
+                i=i+1;
                 printMyText(R.string.button_three);
                 inputAttempt();
                 break;
             }
             case R.id.btnFor: {
+                i=i+1;
                 printMyText(R.string.button_for);
                 inputAttempt();
                 break;
             }
             case R.id.btnFive: {
+                i=i+1;
                 printMyText(R.string.button_five);
                 inputAttempt();
                 break;
             }
             case R.id.btnSix: {
+                i=i+1;
                 printMyText(R.string.button_six);
                 inputAttempt();
                 break;
             }
             case R.id.btnSeven: {
+                i=i+1;
                 printMyText(R.string.button_seven);
                 inputAttempt();
                 break;
             }
             case R.id.btnEight: {
+                i=i+1;
                 printMyText(R.string.button_eight);
                 inputAttempt();
                 break;
             }
             case R.id.btnNine: {
+                i=i+1;
                 printMyText(R.string.button_nine);
                 inputAttempt();
                 break;
             }
             case R.id.btnBackspace: {
-                if (i<2){
+                if (i<1){
                     Toster.showMyMessage(R.string.invalid_input, EnterPasswordActivity.this);
                 } else {
                     errorTextView.setText(errorTextView.getText().toString().substring(0, errorTextView.getText().toString().length() - 1));
-                    i = i - 2;
+                    i = i - 1;
                     inputAttempt();
                 }
                 break;
@@ -135,8 +150,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     }
     // Поменять действия этой процедуры на сохранение в строковую переменную вводимых символов
     public void printMyText(int id) {
-        i=i+1;
-        errorTextView.setText(errorTextView.getText().toString() + getString(id));
+        enteredPin = enteredPin + getString(id);
 
     }
 
@@ -186,8 +200,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
 
     public void checkMyPin() {
         // В этом блоке проверяем пин-код
-        if (errorTextView.getText().toString().equals("1111")) {
-            // Сюда писать код по открытию Активити со списком заметок
+        if (checkPin(enteredPin)) {
             Intent intent = new Intent(EnterPasswordActivity.this, NotesActivity.class);
             startActivity(intent);
             Toster.showMyMessage(R.string.correct_pin, this);
@@ -197,5 +210,82 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
             i = 0;
             inputAttempt();
         }
+    }
+
+    @Override
+    public Map<String, ?> getAll() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getString(String s, @Nullable String s1) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Set<String> getStringSet(String s, @Nullable Set<String> set) {
+        return null;
+    }
+
+    @Override
+    public int getInt(String s, int i) {
+        return 0;
+    }
+
+    @Override
+    public long getLong(String s, long l) {
+        return 0;
+    }
+
+    @Override
+    public float getFloat(String s, float v) {
+        return 0;
+    }
+
+    @Override
+    public boolean getBoolean(String s, boolean b) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(String s) {
+        return false;
+    }
+
+    @Override
+    public Editor edit() {
+        return null;
+    }
+
+    @Override
+    public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+
+    }
+
+    @Override
+    public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+
+    }
+
+    @Override
+    public boolean hasPin() {
+        return false;
+    }
+
+    @Override
+    public boolean checkPin(String pinCode) {
+        return false;
+    }
+
+    @Override
+    public void savePinCode(String pinCode) {
+
+    }
+
+    @Override
+    public String loadPinCode() {
+        return null;
     }
 }
