@@ -22,16 +22,13 @@ public interface Keystore {
     public final static String PIN_CODE = "pin_cod";
 
     default boolean hasPin() {
-        //File f = new File("/data/data/ru.avdeev.android.mynotes/shared_prefs/ru.avdeev.android.mynotes_preferences.xml");
-        File f = new File("/data/data/" + getPackageName() + "/shared_prefs/" + getPackageName() + "_preferences.xml");
-        if (f.exists()) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences((Context) this);
+        if (preferences.contains(KEY)) {
             return true;
         } else {
             return false;
         }
     }
-
-    String getPackageName();
 
     default boolean checkPin(String pinCode) {
         if (hasPin() && pinCode.equals(loadPinCode())) {
