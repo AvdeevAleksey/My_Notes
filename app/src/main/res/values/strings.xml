@@ -24,4 +24,5 @@
     <string name="deadline">Крайний срок</string>
     <string name="there_is_a_deadline">Есть крайний срок</string>
     <string name="settings">Настройки</string>
+    <string name="new_pin_saved">Новый пин-код сохранен</string>
 </resources>

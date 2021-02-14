@@ -32,7 +32,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     ImageView thirdCircle;
     ImageView fourthCircle;
     public static int i = 0;
-    private String enteredPin;
+    private String enteredPin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +151,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     // Поменять действия этой процедуры на сохранение в строковую переменную вводимых символов
     public void printMyText(int id) {
         enteredPin = enteredPin + getString(id);
+        errorTextView.setText(errorTextView.getText().toString() + getString(id));
 
     }
 
@@ -213,79 +214,12 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public Map<String, ?> getAll() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public String getString(String s, @Nullable String s1) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public Set<String> getStringSet(String s, @Nullable Set<String> set) {
-        return null;
-    }
-
-    @Override
-    public int getInt(String s, int i) {
-        return 0;
-    }
-
-    @Override
-    public long getLong(String s, long l) {
-        return 0;
-    }
-
-    @Override
-    public float getFloat(String s, float v) {
-        return 0;
-    }
-
-    @Override
-    public boolean getBoolean(String s, boolean b) {
-        return false;
-    }
-
-    @Override
-    public boolean contains(String s) {
-        return false;
-    }
-
-    @Override
-    public Editor edit() {
-        return null;
-    }
-
-    @Override
-    public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
-
-    }
-
-    @Override
-    public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
-
-    }
-
-    @Override
-    public boolean hasPin() {
-        return false;
-    }
-
-    @Override
     public boolean checkPin(String pinCode) {
-        return false;
-    }
-
-    @Override
-    public void savePinCode(String pinCode) {
-
+        return Keystore.super.checkPin(pinCode);
     }
 
     @Override
     public String loadPinCode() {
-        return null;
+        return Keystore.super.loadPinCode();
     }
 }

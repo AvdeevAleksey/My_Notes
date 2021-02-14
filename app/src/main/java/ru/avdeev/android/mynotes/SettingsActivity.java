@@ -1,5 +1,6 @@
 package ru.avdeev.android.mynotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -45,6 +46,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 //  Здесь код по сохранению пин-кода, возвращению в NotesActivity,
                 //  пересоздание списка, вывод сообщения об успешном сохранении.
                 savePinCode(newPinEditText.getText().toString());
+                Intent intent = new Intent(SettingsActivity.this, NotesActivity.class);
+                startActivity(intent);
             }
             case R.id.btnViewHidePin: {
                 //  Пока не придумал как будет работать.
@@ -62,6 +65,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         savePinCode(newPinEditText.getText().toString());
 
         if (hasPin()) {
+            Toster.showMyMessage(R.string.new_pin_saved,(Context) this);
             Intent intent = new Intent(SettingsActivity.this, NotesActivity.class);
             startActivity(intent);
             return true;
@@ -70,79 +74,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public Map<String, ?> getAll() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public String getString(String s, @Nullable String s1) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public Set<String> getStringSet(String s, @Nullable Set<String> set) {
-        return null;
-    }
-
-    @Override
-    public int getInt(String s, int i) {
-        return 0;
-    }
-
-    @Override
-    public long getLong(String s, long l) {
-        return 0;
-    }
-
-    @Override
-    public float getFloat(String s, float v) {
-        return 0;
-    }
-
-    @Override
-    public boolean getBoolean(String s, boolean b) {
-        return false;
-    }
-
-    @Override
-    public boolean contains(String s) {
-        return false;
-    }
-
-    @Override
-    public Editor edit() {
-        return null;
-    }
-
-    @Override
-    public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
-
-    }
-
-    @Override
-    public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
-
-    }
-
-    @Override
-    public boolean hasPin() {
-        return false;
-    }
-
-    @Override
-    public boolean checkPin(String pinCode) {
-        return false;
-    }
-
-    @Override
     public void savePinCode(String pinCode) {
-
-    }
-
-    @Override
-    public String loadPinCode() {
-        return null;
+        Keystore.super.savePinCode(pinCode);
     }
 }
