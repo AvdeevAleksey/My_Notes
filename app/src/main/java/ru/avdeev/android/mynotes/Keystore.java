@@ -22,13 +22,16 @@ public interface Keystore {
     public final static String PIN_CODE = "pin_cod";
 
     default boolean hasPin() {
-        File f = new File("/data/data/ru.avdeev.android.mynotes/shared_prefs/ru.avdeev.android.mynotes_preferences.xml");
+        //File f = new File("/data/data/ru.avdeev.android.mynotes/shared_prefs/ru.avdeev.android.mynotes_preferences.xml");
+        File f = new File("/data/data/" + getPackageName() + "/shared_prefs/" + getPackageName() + "_preferences.xml");
         if (f.exists()) {
             return true;
         } else {
             return false;
         }
     }
+
+    String getPackageName();
 
     default boolean checkPin(String pinCode) {
         if (hasPin() && pinCode.equals(loadPinCode())) {
@@ -39,16 +42,22 @@ public interface Keystore {
     }
 
     default void savePinCode(String pinCode) {
-        SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences((Context) this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(KEY,pinCode).commit();
-        Toster.showMyMessage(R.string.new_pin_saved,(Context) this);
+        if (pinCode.length()!=0 && !pinCode.isEmpty() && !pinCode.equals(loadPinCode())) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences((Context) this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(KEY, pinCode).commit();
+            Toster.showMyMessage(R.string.new_pin_saved, (Context) this);
+        } else {
+            Toster.showMyMessage(R.string.old_pin_saved, (Context) this);
+        }
     }
 
     default String loadPinCode() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences((Context) this);
         return preferences.getString(KEY,"");
     }
+
+    
 
 
     /*public final static String KEY = "key1";

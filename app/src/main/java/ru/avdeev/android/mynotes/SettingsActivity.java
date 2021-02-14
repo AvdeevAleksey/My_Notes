@@ -53,7 +53,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 //  Пока не придумал как будет работать.
             }
         }
-
     }
 
     @Override
@@ -65,7 +64,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         savePinCode(newPinEditText.getText().toString());
 
         if (hasPin()) {
-            Toster.showMyMessage(R.string.new_pin_saved,(Context) this);
             Intent intent = new Intent(SettingsActivity.this, NotesActivity.class);
             startActivity(intent);
             return true;

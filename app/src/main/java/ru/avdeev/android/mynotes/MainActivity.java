@@ -40,4 +40,8 @@ public class MainActivity extends AppCompatActivity implements Keystore {
         }
     }
 
+    @Override
+    public String getPackageName() {
+        return super.getPackageName();
+    }
 }
