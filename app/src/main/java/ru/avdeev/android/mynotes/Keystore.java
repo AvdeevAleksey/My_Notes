@@ -53,35 +53,4 @@ public interface Keystore {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences((Context) this);
         return preferences.getString(KEY,"");
     }
-
-    
-
-
-    /*public final static String KEY = "key1";
-    public final static String PIN_CODE = "pin_cod";
-
-    public default boolean hasPin() {
-        File f = new File("/data/data/ru.avdeev.android.mynotes/shared_prefs/" + PIN_CODE +".xml");
-        if (f.exists()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public default boolean checkPin(String pinCode) {
-        if (hasPin() && pinCode.equals(loadPinCode())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    default void savePinCode(String text) {
-        //mySharedPreferences.edit().putString(KEY,text).commit();
-    }
-
-    public default String loadPinCode() {
-        return getSharedPreferences(PIN_CODE,MODE_PRIVATE).getString(KEY,"");
-    }*/
 }
