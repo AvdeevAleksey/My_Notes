@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class NotesActivity  extends AppCompatActivity{
+public class NotesActivity extends AppCompatActivity implements NoteRepository {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -28,6 +28,11 @@ public class NotesActivity  extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+//  Сюда написать код по созданию списка заметок
+
+//  Этот код берет все заметки из БД
+        noteDAO().getAll();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

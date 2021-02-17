@@ -5,37 +5,31 @@ import java.util.List;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface NoteRepository {
-    NoteData getNoteById(String id);
-    List<NoteData> getNotes();
+    @Query("SELECT * FROM note WHERE title = :title") default NoteData getByTitle(String title) {
+        return noteDAO().getByTitle(title);
+    }
+    @Query("SELECT * FROM note") default List<NoteData> getAll() {
+        return noteDAO().getAll();
+    }
 
-    @Insert void saveNote(NoteData note);
-    @Delete void deleteById(String id);
+    @Insert default void saveNote(NoteData note) {
+        noteDAO().saveNote(note);
+    }
+    @Update default void updateNote(NoteData note) {
+        noteDAO().updateNote(note);
+    }
+    @Delete default void deleteByTitle(String title) {
+        noteDAO().deleteByTitle(title);
+    }
 
-//    @Entity
-//    public class Person {
-//        @PrimaryKey String name;
-//        int age;
-//        String favoriteColor;
-//    }
-//    // Получение всех Person из бд
-//    @Query("SELECT * FROM person")
-//    List<Person> getAllPeople();
-//
-//    // Получение всех Person из бд с условием
-//    @Query("SELECT * FROM person WHERE favoriteColor LIKE :color")
-//    List<Person> getAllPeopleWithFavoriteColor(String color);
-//
-//    @Database(entities = {Person.class /*, AnotherEntityType.class, AThirdEntityType.class */}, version = 1)
-//    public abstract class AppDatabase extends RoomDatabase {
-//        public abstract PersonDao getPersonDao();
-//    }
-//
-//    AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-//            AppDatabase.class, "populus-database").build();
-//    List<Person> everyone = db.getPersonDao().getAllPeople();
-//
-//    https://habr.com/ru/post/336196/
+    default NoteRepository noteDAO() {
+        AppDatabase db = NewNoteActivity.getInstance().getDatabase();
+        NoteRepository noteDao = db.NoteDataDao();
+        return noteDao;
+    }
 }

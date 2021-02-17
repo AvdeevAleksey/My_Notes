@@ -8,12 +8,15 @@ public class NoteData {
 
     @PrimaryKey
     private String title;
-    private String subtitle;
+    private String body;
     private String deadline;
 
-    public NoteData(String title, String subtitle, String deadline) {
+    public NoteData() {
+    }
+
+    public NoteData(String title, String body, String deadline) {
         this.title = title;
-        this.subtitle = subtitle;
+        this.body = body;
         this.deadline = deadline;
     }
 
@@ -21,20 +24,20 @@ public class NoteData {
         return title;
     }
 
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public String getDeadline() {
-        return deadline;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getDeadline() {
+        return deadline;
     }
 
     public void setDeadline(String deadline) {

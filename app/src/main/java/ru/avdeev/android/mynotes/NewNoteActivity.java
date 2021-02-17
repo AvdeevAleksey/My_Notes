@@ -3,6 +3,7 @@ package ru.avdeev.android.mynotes;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.Menu;
@@ -19,15 +20,20 @@ import android.widget.TimePicker;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import java.util.Calendar;
 
-public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener, NoteRepository {
 
+    EditText titleEditText;
+    EditText bodyEditText;
     EditText editTextDateTime;
     ImageButton buttonCalendar;
     CheckBox deadlineChkBox;
     Calendar todayCalendar = Calendar.getInstance();
+    public static NewNoteActivity instance;
+    private AppDatabase database;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,6 +52,8 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
         editTextDateTime = (EditText) findViewById(R.id.deadlineEditText);
         buttonCalendar = (ImageButton) findViewById(R.id.btnCalendar);
         deadlineChkBox = (CheckBox) findViewById(R.id.deadlineCheckBox);
+        titleEditText = (EditText) findViewById(R.id.titleNotes);
+        bodyEditText = (EditText) findViewById(R.id.bodyNotes);
         editTextDateTime.setEnabled(false);
         buttonCalendar.setEnabled(false);
 
@@ -65,6 +73,10 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
+
+        instance = this;
+        database = Room.databaseBuilder(this, AppDatabase.class, "database")
+                .build();
     }
 
     @Override
@@ -89,6 +101,13 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.notesSave: {
                 //  Здесь код по сохранению заметки, возвращение в NotesActivity,
                 //  пересоздание списка, вывод сообщения об успешном сохранении.
+                NoteData note = new NoteData();
+                note.setTitle(titleEditText.getText().toString());
+                note.setBody(bodyEditText.getText().toString());
+                note.setDeadline(editTextDateTime.getText().toString());
+                saveNote(note);
+                Intent intent = new Intent(NewNoteActivity.this, NotesActivity.class);
+                startActivity(intent);
             }
         }
         return super.onOptionsItemSelected(item);
@@ -140,5 +159,13 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 todayCalendar.get(Calendar.HOUR_OF_DAY),
                 todayCalendar.get(Calendar.MINUTE), true)
                 .show();
+    }
+
+    public static NewNoteActivity getInstance() {
+        return instance;
+    }
+
+    public AppDatabase getDatabase() {
+        return database;
     }
 }
