@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class NoteData {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String title;
     private String body;
     private String deadline;
@@ -14,10 +15,16 @@ public class NoteData {
     public NoteData() {
     }
 
-    public NoteData(String title, String body, String deadline) {
-        this.title = title;
-        this.body = body;
-        this.deadline = deadline;
+    public NoteData(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

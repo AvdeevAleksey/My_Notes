@@ -12,8 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class NotesActivity extends AppCompatActivity implements NoteRepository {
+
+    ArrayList<NoteData> notes = new ArrayList<NoteData>();
+    NotesDataAdapter adapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,8 +38,14 @@ public class NotesActivity extends AppCompatActivity implements NoteRepository {
 
 //  Сюда написать код по созданию списка заметок
 
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        // создаем адаптер
+        adapter = new NotesDataAdapter(this, notes);
+        // устанавливаем для списка адаптер
+        recyclerView.setAdapter(adapter);
+        setInitialData();
 //  Этот код берет все заметки из БД
-        noteDAO().getAll();
+//        noteDAO().getAll();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +54,16 @@ public class NotesActivity extends AppCompatActivity implements NoteRepository {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setInitialData() {
+
+        if (adapter.getItemCount()!=0) {
+            notes.addAll(noteDAO().getAll());
+        } else {
+            Toster.showMyMessage(R.string.empty_notes, this);
+        }
+
     }
 
     @Override

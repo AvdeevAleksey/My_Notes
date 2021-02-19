@@ -104,7 +104,11 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 NoteData note = new NoteData();
                 note.setTitle(titleEditText.getText().toString());
                 note.setBody(bodyEditText.getText().toString());
-                note.setDeadline(editTextDateTime.getText().toString());
+                if (deadlineChkBox.isChecked()) {
+                    note.setDeadline(editTextDateTime.getText().toString());
+                } else {
+                    note.setDeadline("");
+                }
                 saveNote(note);
                 Intent intent = new Intent(NewNoteActivity.this, NotesActivity.class);
                 startActivity(intent);
