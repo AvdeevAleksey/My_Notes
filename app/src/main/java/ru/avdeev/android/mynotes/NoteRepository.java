@@ -10,27 +10,12 @@ import androidx.room.Update;
 
 @Dao
 public interface NoteRepository{
-    @Query("SELECT * FROM note WHERE id = :id") default NoteData getById(int id) {
-        return noteDAO().getById(id);
-    }
-    @Query("SELECT * FROM note") default List<NoteData> getAll() {
-        List<NoteData> notes = noteDAO().getAll();
-        return notes;
-    }
-
-    @Insert default void saveNote(NoteData note) {
-        noteDAO().saveNote(note);
-    }
-    @Update default void updateNote(NoteData note) {
-        noteDAO().updateNote(note);
-    }
-    @Delete default void deleteById(int id) {
-        noteDAO().deleteById(id);
-    }
-
-    default NoteRepository noteDAO() {
-        AppDatabase db = NewNoteActivity.getInstance().getDatabase();
-        NoteRepository noteDao = db.NoteDataDao();
-        return noteDao;
-    }
+    @Query("SELECT * FROM NoteData WHERE id = :id")
+    NoteData getById(int id);
+    @Query("SELECT * FROM NoteData")
+    List<NoteData> getAll();
+    @Insert void saveNote(NoteData note);
+    @Update void updateNote(NoteData note);
+    @Query("DELETE FROM NoteData WHERE id = :id")
+    void deleteById(int id);
 }

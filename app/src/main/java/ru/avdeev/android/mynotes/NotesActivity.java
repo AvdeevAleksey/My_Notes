@@ -16,8 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class NotesActivity extends AppCompatActivity implements NoteRepository {
+public class NotesActivity extends AppCompatActivity {
 
     ArrayList<NoteData> notes = new ArrayList<NoteData>();
     NotesDataAdapter adapter;
@@ -57,10 +58,11 @@ public class NotesActivity extends AppCompatActivity implements NoteRepository {
     }
 
     private void setInitialData() {
-
-        if (adapter.getItemCount()!=0) {
-            notes.addAll(noteDAO().getAll());
+        List<NoteData> all = App.getNoteRepository().getAll();
+        if (!all.isEmpty()) {
+            notes.addAll(all);
         } else {
+            // TODO Вместо тоста лучше вьюшку
             Toster.showMyMessage(R.string.empty_notes, this);
         }
 

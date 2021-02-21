@@ -1,6 +1,5 @@
 package ru.avdeev.android.mynotes;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -20,11 +18,10 @@ import android.widget.TimePicker;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.room.Room;
 
 import java.util.Calendar;
 
-public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener, NoteRepository {
+public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText titleEditText;
     EditText bodyEditText;
@@ -32,8 +29,6 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     ImageButton buttonCalendar;
     CheckBox deadlineChkBox;
     Calendar todayCalendar = Calendar.getInstance();
-    public static NewNoteActivity instance;
-    private AppDatabase database;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,10 +68,6 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
-
-        instance = this;
-        database = Room.databaseBuilder(this, AppDatabase.class, "database")
-                .build();
     }
 
     @Override
@@ -109,7 +100,8 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 } else {
                     note.setDeadline("");
                 }
-                saveNote(note);
+                App.getNoteRepository()
+                        .saveNote(note);
                 Intent intent = new Intent(NewNoteActivity.this, NotesActivity.class);
                 startActivity(intent);
             }
@@ -163,13 +155,5 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 todayCalendar.get(Calendar.HOUR_OF_DAY),
                 todayCalendar.get(Calendar.MINUTE), true)
                 .show();
-    }
-
-    public static NewNoteActivity getInstance() {
-        return instance;
-    }
-
-    public AppDatabase getDatabase() {
-        return database;
     }
 }
