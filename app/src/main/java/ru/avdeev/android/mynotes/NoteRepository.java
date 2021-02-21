@@ -14,7 +14,8 @@ public interface NoteRepository{
         return noteDAO().getById(id);
     }
     @Query("SELECT * FROM note") default List<NoteData> getAll() {
-        return noteDAO().getAll();
+        List<NoteData> notes = noteDAO().getAll();
+        return notes;
     }
 
     @Insert default void saveNote(NoteData note) {
