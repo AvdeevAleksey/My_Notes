@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -12,15 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity implements ItemClickListener, AdapterView.OnItemLongClickListener {
 
-    ArrayList<NoteData> notes = new ArrayList<NoteData>();
+    ArrayList<NoteData> notes = new ArrayList<>();
     NotesDataAdapter adapter;
     RecyclerView recyclerView;
     FloatingActionButton fab;
@@ -43,6 +48,10 @@ public class NotesActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NotesDataAdapter(this, notes);
+
+        adapter.setOnItemLongClickListener(this);
+        adapter.setClickListener(this);
+
         recyclerView.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,18 +73,6 @@ public class NotesActivity extends AppCompatActivity {
             Toster.showMyMessage(R.string.empty_notes, this);
         }
 
-//        notes.addAll(noteDAO().getAll());
-//
-//        // создаем адаптер
-//        adapter = new NotesDataAdapter(this, notes);
-//
-//        if (adapter!=null) {
-//            // устанавливаем для списка адаптер
-//            recyclerView.setAdapter(adapter);
-//        } else {
-//            Toster.showMyMessage(R.string.empty_notes, this);
-//        }
-
     }
 
     @Override
@@ -87,5 +84,22 @@ public class NotesActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "Ты нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
+    }
+
+//    @Override
+//    public boolean onItemLongClick(View view, int position) {
+//        Toast.makeText(this, "Долго нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
+//        return true;
+//    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this, "Долго нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
+        return true;
     }
 }

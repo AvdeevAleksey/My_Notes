@@ -71,6 +71,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
+
     }
 
     @Override
