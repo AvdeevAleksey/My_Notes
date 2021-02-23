@@ -16,11 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class NotesActivity extends AppCompatActivity implements NoteRepository {
+public class NotesActivity extends AppCompatActivity {
 
     ArrayList<NoteData> notes = new ArrayList<NoteData>();
     NotesDataAdapter adapter;
+    RecyclerView recyclerView;
+    FloatingActionButton fab;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,18 +37,13 @@ public class NotesActivity extends AppCompatActivity implements NoteRepository {
         setContentView(R.layout.activity_notes);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
 
-//  Сюда написать код по созданию списка заметок
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        // создаем адаптер
-        adapter = new NotesDataAdapter(this, notes);
-        // устанавливаем для списка адаптер
-        recyclerView.setAdapter(adapter);
         setInitialData();
-//  Этот код берет все заметки из БД
-//        noteDAO().getAll();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new NotesDataAdapter(this, notes);
+        recyclerView.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +56,25 @@ public class NotesActivity extends AppCompatActivity implements NoteRepository {
 
     private void setInitialData() {
 
-        if (adapter.getItemCount()!=0) {
-            notes.addAll(noteDAO().getAll());
+        List<NoteData> all = App.getNoteRepository().getAll();
+        if (!all.isEmpty()) {
+            notes.addAll(all);
         } else {
+            // TODO Вместо тоста лучше вьюшку
             Toster.showMyMessage(R.string.empty_notes, this);
         }
+
+//        notes.addAll(noteDAO().getAll());
+//
+//        // создаем адаптер
+//        adapter = new NotesDataAdapter(this, notes);
+//
+//        if (adapter!=null) {
+//            // устанавливаем для списка адаптер
+//            recyclerView.setAdapter(adapter);
+//        } else {
+//            Toster.showMyMessage(R.string.empty_notes, this);
+//        }
 
     }
 

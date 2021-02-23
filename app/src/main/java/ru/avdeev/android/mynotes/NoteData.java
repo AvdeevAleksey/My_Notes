@@ -19,6 +19,13 @@ public class NoteData {
         this.id = id;
     }
 
+    public NoteData(int id, String title, String body, String deadline) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.deadline = deadline;
+    }
+
     public int getId() {
         return id;
     }

@@ -24,7 +24,7 @@ import androidx.room.Room;
 
 import java.util.Calendar;
 
-public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener, NoteRepository {
+public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText titleEditText;
     EditText bodyEditText;
@@ -32,8 +32,6 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     ImageButton buttonCalendar;
     CheckBox deadlineChkBox;
     Calendar todayCalendar = Calendar.getInstance();
-    public static NewNoteActivity instance;
-    private AppDatabase database;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,10 +71,6 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
-
-        instance = this;
-        database = Room.databaseBuilder(this, AppDatabase.class, "database")
-                .build();
     }
 
     @Override
@@ -109,7 +103,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 } else {
                     note.setDeadline("");
                 }
-                saveNote(note);
+                App.getNoteRepository().saveNote(note);
                 Intent intent = new Intent(NewNoteActivity.this, NotesActivity.class);
                 startActivity(intent);
             }
@@ -163,13 +157,5 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 todayCalendar.get(Calendar.HOUR_OF_DAY),
                 todayCalendar.get(Calendar.MINUTE), true)
                 .show();
-    }
-
-    public static NewNoteActivity getInstance() {
-        return instance;
-    }
-
-    public AppDatabase getDatabase() {
-        return database;
     }
 }
