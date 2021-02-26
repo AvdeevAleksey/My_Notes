@@ -5,5 +5,5 @@ import android.widget.AdapterView;
 
 public interface ItemClickListener{
     void onItemClick(View view, int position);
-//    boolean onItemLongClick(View view, int position);
+    void onItemLongClick(View view, int position);
 }

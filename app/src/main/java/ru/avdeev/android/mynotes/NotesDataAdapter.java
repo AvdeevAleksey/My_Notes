@@ -17,7 +17,6 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
     private final LayoutInflater inflater;
     private final List<NoteData> notes;
     private ItemClickListener noteClickListener;
-    private OnItemLongClickListener noteLongClickListener;
 
     NotesDataAdapter(Context context, List<NoteData> notes) {
         this.notes = notes;
@@ -45,7 +44,7 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
         return notes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, OnItemLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         final TextView titleView, bodyView, deadLineView;
         ViewHolder(View view){
             super(view);
@@ -53,6 +52,7 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
             bodyView = (TextView) view.findViewById(R.id.body);
             deadLineView = (TextView) view.findViewById(R.id.deadline);
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -63,12 +63,12 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
         }
 
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            if (noteLongClickListener != null) {
-                return true;
-            } else {
-                noteLongClickListener.onItemLongClick(parent,view, getAdapterPosition(),getItemId());
+        public boolean onLongClick(View view) {
+            if (noteClickListener == null) {
                 return false;
+            } else {
+                noteClickListener.onItemLongClick(view, getAdapterPosition());
+                return true;
             }
         }
     }
@@ -78,10 +78,5 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
 
     void setClickListener(ItemClickListener noteClickListener) {
         this.noteClickListener = noteClickListener;
-    }
-
-    boolean setOnItemLongClickListener(OnItemLongClickListener noteLongClickListener) {
-        this.noteLongClickListener = noteLongClickListener;
-        return true;
     }
 }

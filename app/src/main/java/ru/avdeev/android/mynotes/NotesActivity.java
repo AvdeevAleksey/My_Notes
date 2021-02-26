@@ -23,7 +23,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesActivity extends AppCompatActivity implements ItemClickListener, AdapterView.OnItemLongClickListener {
+public class NotesActivity extends AppCompatActivity implements ItemClickListener{
 
     ArrayList<NoteData> notes = new ArrayList<>();
     NotesDataAdapter adapter;
@@ -49,7 +49,6 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NotesDataAdapter(this, notes);
 
-        adapter.setOnItemLongClickListener(this);
         adapter.setClickListener(this);
 
         recyclerView.setAdapter(adapter);
@@ -91,15 +90,8 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
         Toast.makeText(this, "Ты нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
     }
 
-//    @Override
-//    public boolean onItemLongClick(View view, int position) {
-//        Toast.makeText(this, "Долго нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
-//        return true;
-//    }
-
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemLongClick(View view, int position) {
         Toast.makeText(this, "Долго нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
-        return true;
     }
 }
