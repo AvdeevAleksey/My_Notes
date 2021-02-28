@@ -32,6 +32,8 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     ImageButton buttonCalendar;
     CheckBox deadlineChkBox;
     Calendar todayCalendar = Calendar.getInstance();
+    Bundle arguments;
+    int noteId;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,26 +54,32 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
         deadlineChkBox = (CheckBox) findViewById(R.id.deadlineCheckBox);
         titleEditText = (EditText) findViewById(R.id.titleNotes);
         bodyEditText = (EditText) findViewById(R.id.bodyNotes);
-        editTextDateTime.setEnabled(false);
-        buttonCalendar.setEnabled(false);
-
-        deadlineChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    editTextDateTime.setEnabled(true);
-                    buttonCalendar.setEnabled(true);
-                    setInitialDateTime();
-                    editTextDateTime.setOnClickListener(NewNoteActivity.this::onClick);
-                    buttonCalendar.setOnClickListener(NewNoteActivity.this::onClick);
-                } else {
-                    editTextDateTime.setText(R.string.deadline);
-                    editTextDateTime.setEnabled(false);
-                    buttonCalendar.setEnabled(false);
+        arguments = getIntent().getExtras();
+        noteId = (int) arguments.get("note");
+        if (arguments != null) {
+            NoteData note = App.getNoteRepository().getById(noteId);
+            titleEditText.setText(note.getTitle());
+            bodyEditText.setText(note.getBody());
+            editTextDateTime.setText(note.getDeadline());
+        }
+            editTextDateTime.setEnabled(false);
+            buttonCalendar.setEnabled(false);
+            deadlineChkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b) {
+                        editTextDateTime.setEnabled(true);
+                        buttonCalendar.setEnabled(true);
+                        setInitialDateTime();
+                        editTextDateTime.setOnClickListener(NewNoteActivity.this::onClick);
+                        buttonCalendar.setOnClickListener(NewNoteActivity.this::onClick);
+                    } else {
+                        editTextDateTime.setText(R.string.deadline);
+                        editTextDateTime.setEnabled(false);
+                        buttonCalendar.setEnabled(false);
+                    }
                 }
-            }
-        });
-
+            });
     }
 
     @Override
@@ -104,8 +112,13 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 } else {
                     note.setDeadline("");
                 }
-                App.getNoteRepository().saveNote(note);
-                Intent intent = new Intent(NewNoteActivity.this, NotesActivity.class);
+                if (arguments != null) {
+                    note.setId(noteId);
+                    App.getNoteRepository().updateNote(note);
+                } else {
+                    App.getNoteRepository().saveNote(note);
+                }
+                Intent intent = new Intent(this, NotesActivity.class);
                 startActivity(intent);
             }
         }
@@ -159,4 +172,5 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 todayCalendar.get(Calendar.MINUTE), true)
                 .show();
     }
+
 }

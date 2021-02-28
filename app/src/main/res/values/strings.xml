@@ -27,4 +27,5 @@
     <string name="new_pin_saved">Новый пин-код сохранен</string>
     <string name="old_pin_saved">Действует старый пин-код</string>
     <string name="empty_notes">Список заметок пуст</string>
+    <string name="del_note">Удалена заметка: </string>
 </resources>

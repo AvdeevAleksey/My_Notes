@@ -72,11 +72,27 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
             }
         }
     }
-    public NoteData getItem(int id) {
-        return notes.get(id);
+    public NoteData getItem(int position) {
+        if (position < notes.size()) {
+            return notes.get(position);
+        } else {
+            return null;
+        }
     }
 
     void setClickListener(ItemClickListener noteClickListener) {
         this.noteClickListener = noteClickListener;
+    }
+
+    void removeNote (int position) {
+        int id = getItem(position).getId();
+        notes.remove(position);
+        App.getNoteRepository().deleteById(id);
+        notifyDataSetChanged();
+    }
+
+    void changeNote (NoteData noteData) {
+        App.getNoteRepository().updateNote(noteData);
+
     }
 }

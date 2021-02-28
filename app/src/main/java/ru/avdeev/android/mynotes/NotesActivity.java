@@ -87,11 +87,19 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "Ты нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                "Номер id адаптера: " + adapter.getItem(position).getId()
+                        + "\nНомер id заметки: " + notes.get(position).getId()
+                + "\nЗаголовок: " + notes.get(position).getTitle()
+                + "\nстрочка " + position,
+                Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, NewNoteActivity.class);
+        intent.putExtra("note", adapter.getItem(position).getId());
+        startActivity(intent);
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
-        Toast.makeText(this, "Долго нажал " + notes.get(position).getTitle() + " строчка " + position, Toast.LENGTH_SHORT).show();
+        adapter.removeNote(position);
     }
 }
