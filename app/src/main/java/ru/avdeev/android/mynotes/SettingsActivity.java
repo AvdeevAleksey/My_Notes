@@ -3,6 +3,7 @@ package ru.avdeev.android.mynotes;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     EditText newPinEditText;
     Button btnSavePinCode;
     ImageButton btnViewHidePin;
+    private boolean btnViewHidePinFlag = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +52,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }
             case R.id.btnViewHidePin: {
-                //  Пока не придумал как будет работать.
+                if (btnViewHidePinFlag) {
+                    btnViewHidePin.setImageResource(R.drawable.ic_baseline_visibility_24);
+                    newPinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_NORMAL);
+                } else {
+                    btnViewHidePin.setImageResource(R.drawable.ic_baseline_visibility_off_24);
+                    newPinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+                }
+                btnViewHidePinFlag = !btnViewHidePinFlag;
             }
         }
     }

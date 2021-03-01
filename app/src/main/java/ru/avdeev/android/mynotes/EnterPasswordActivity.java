@@ -137,7 +137,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
                 if (i<1){
                     Toster.showMyMessage(R.string.invalid_input, EnterPasswordActivity.this);
                 } else {
-                    errorTextView.setText(errorTextView.getText().toString().substring(0, errorTextView.getText().toString().length() - 1));
+//                    errorTextView.setText(errorTextView.getText().toString().substring(0, errorTextView.getText().toString().length() - 1));
                     i = i - 1;
                     inputAttempt();
                 }
@@ -151,8 +151,7 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     // Поменять действия этой процедуры на сохранение в строковую переменную вводимых символов
     public void printMyText(int id) {
         enteredPin = enteredPin + getString(id);
-        errorTextView.setText(errorTextView.getText().toString() + getString(id));
-
+//        errorTextView.setText(errorTextView.getText().toString() + getString(id));
     }
 
     public void inputAttempt() {
