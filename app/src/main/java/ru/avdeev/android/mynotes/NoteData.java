@@ -1,5 +1,7 @@
 package ru.avdeev.android.mynotes;
 
+import android.provider.ContactsContract;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 

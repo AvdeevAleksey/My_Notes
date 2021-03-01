@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -64,7 +65,8 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
 
     private void setInitialData() {
 
-        List<NoteData> all = App.getNoteRepository().getAll();
+        String query = "SELECT * FROM NoteData ORDER BY deadline ASC";
+        List<NoteData> all = App.getNoteRepository().runtimeQuery(new SimpleSQLiteQuery(query));
         if (!all.isEmpty()) {
             notes.addAll(all);
         } else {

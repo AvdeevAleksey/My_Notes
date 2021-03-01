@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.room.Room;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 public class NewNoteActivity extends AppCompatActivity implements View.OnClickListener {
@@ -151,7 +152,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             todayCalendar.set(Calendar.YEAR, year);
-            todayCalendar.set(Calendar.MONTH, monthOfYear);
+            todayCalendar.set(Calendar.DATE, monthOfYear);
             todayCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             setInitialDateTime();
         }
@@ -161,7 +162,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     public void setDate(View v) {
         new DatePickerDialog(NewNoteActivity.this, d,
                 todayCalendar.get(Calendar.YEAR),
-                todayCalendar.get(Calendar.MONTH),
+                todayCalendar.get(Calendar.DATE),
                 todayCalendar.get(Calendar.DAY_OF_MONTH))
                 .show();
     }
