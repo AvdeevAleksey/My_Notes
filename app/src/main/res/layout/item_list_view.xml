@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
-    android:background="@drawable/background_with_shadow"
-    android:layout_margin="1dp">
+    android:background="@drawable/background_with_shadow">
 
 
     <LinearLayout
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1"
-        android:padding="3dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/title"

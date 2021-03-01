@@ -66,7 +66,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
             titleEditText.setText(note.getTitle());
             bodyEditText.setText(note.getBody());
             editTextDateTime.setText(note.getDeadline());
-            if (editTextDateTime.getText().equals("")) {
+            if (editTextDateTime.getText().toString().equals("")) {
                 editTextDateTime.setEnabled(false);
                 buttonCalendar.setEnabled(false);
                 deadlineChkBox.setChecked(false);

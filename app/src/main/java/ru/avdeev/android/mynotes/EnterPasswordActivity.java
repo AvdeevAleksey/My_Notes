@@ -151,7 +151,6 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
     // Поменять действия этой процедуры на сохранение в строковую переменную вводимых символов
     public void printMyText(int id) {
         enteredPin = enteredPin + getString(id);
-//        errorTextView.setText(errorTextView.getText().toString() + getString(id));
     }
 
     public void inputAttempt() {
@@ -203,10 +202,10 @@ public class EnterPasswordActivity extends AppCompatActivity implements View.OnC
         if (checkPin(enteredPin)) {
             Intent intent = new Intent(EnterPasswordActivity.this, NotesActivity.class);
             startActivity(intent);
-            Toster.showMyMessage(R.string.correct_pin, this);
+//            Toster.showMyMessage(R.string.correct_pin, this);
         } else {
-            errorTextView.setText("");
-            printMyText(R.string.error_pin);
+            errorTextView.setText(R.string.error_pin);
+            enteredPin = "";
             i = 0;
             inputAttempt();
         }
