@@ -1,6 +1,7 @@
 package ru.avdeev.android.mynotes;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.ViewHolder>{
@@ -36,7 +38,8 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
         NoteData note = notes.get(position);
         holder.titleView.setText(note.getTitle());
         holder.bodyView.setText(note.getBody());
-        holder.deadLineView.setText(note.getDeadline());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+        holder.deadLineView.setText(sdf.format(note.getDeadline()));
     }
 
     @Override

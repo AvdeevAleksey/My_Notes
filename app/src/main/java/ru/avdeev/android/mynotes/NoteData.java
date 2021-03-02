@@ -12,12 +12,12 @@ public class NoteData {
     private int id;
     private String title;
     private String body;
-    private String deadline;
+    private long deadline;
 
     public NoteData() {
     }
 
-    public NoteData(int id, String title, String body, String deadline) {
+    public NoteData(int id, String title, String body, long deadline) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -48,11 +48,11 @@ public class NoteData {
         this.body = body;
     }
 
-    public String getDeadline() {
+    public long getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(long deadline) {
         this.deadline = deadline;
     }
 }

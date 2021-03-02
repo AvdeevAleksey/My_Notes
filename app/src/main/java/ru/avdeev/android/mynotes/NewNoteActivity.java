@@ -66,8 +66,11 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
             NoteData note = App.getNoteRepository().getById(noteId);
             titleEditText.setText(note.getTitle());
             bodyEditText.setText(note.getBody());
-            editTextDateTime.setText(note.getDeadline());
-            if (editTextDateTime.getText().toString().equals("")) {
+            editTextDateTime.setText(DateUtils.formatDateTime(this,
+                    note.getDeadline(),
+                    DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
+            if (note.getDeadline() == Long.MAX_VALUE) {
+                editTextDateTime.setText("");
                 editTextDateTime.setEnabled(false);
                 buttonCalendar.setEnabled(false);
                 deadlineChkBox.setChecked(false);
@@ -110,9 +113,9 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
                 note.setTitle(titleEditText.getText().toString());
                 note.setBody(bodyEditText.getText().toString());
                 if (deadlineChkBox.isChecked()) {
-                    note.setDeadline(editTextDateTime.getText().toString());
+                    note.setDeadline(todayCalendar.getTimeInMillis());
                 } else {
-                    note.setDeadline("");
+                    note.setDeadline(Long.MAX_VALUE);
                 }
                 if (arguments != null) {
                     note.setId(noteId);
@@ -133,7 +136,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
         return true;
     }
 
-    private void setInitialDateTime() {
+    public void setInitialDateTime() {
         editTextDateTime.setText(DateUtils.formatDateTime(this,
                 todayCalendar.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
@@ -152,7 +155,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             todayCalendar.set(Calendar.YEAR, year);
-            todayCalendar.set(Calendar.DATE, monthOfYear);
+            todayCalendar.set(Calendar.MONTH, monthOfYear);
             todayCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             setInitialDateTime();
         }
@@ -162,7 +165,7 @@ public class NewNoteActivity extends AppCompatActivity implements View.OnClickLi
     public void setDate(View v) {
         new DatePickerDialog(NewNoteActivity.this, d,
                 todayCalendar.get(Calendar.YEAR),
-                todayCalendar.get(Calendar.DATE),
+                todayCalendar.get(Calendar.MONTH),
                 todayCalendar.get(Calendar.DAY_OF_MONTH))
                 .show();
     }
