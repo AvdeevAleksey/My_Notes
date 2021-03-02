@@ -38,8 +38,12 @@ public class NotesDataAdapter extends RecyclerView.Adapter<NotesDataAdapter.View
         NoteData note = notes.get(position);
         holder.titleView.setText(note.getTitle());
         holder.bodyView.setText(note.getBody());
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
-        holder.deadLineView.setText(sdf.format(note.getDeadline()));
+        if (note.getDeadline()!=Long.MAX_VALUE) {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+            holder.deadLineView.setText(sdf.format(note.getDeadline()));
+        } else {
+            holder.deadLineView.setText("");
+        }
     }
 
     @Override

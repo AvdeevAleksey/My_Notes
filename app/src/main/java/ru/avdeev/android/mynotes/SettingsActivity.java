@@ -50,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 savePinCode(newPinEditText.getText().toString());
                 Intent intent = new Intent(SettingsActivity.this, NotesActivity.class);
                 startActivity(intent);
+                break;
             }
             case R.id.btnViewHidePin: {
                 if (btnViewHidePinFlag) {
@@ -60,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                     newPinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
                 }
                 btnViewHidePinFlag = !btnViewHidePinFlag;
+                break;
             }
         }
     }
