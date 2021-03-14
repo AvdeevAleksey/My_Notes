@@ -65,8 +65,10 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
 
     private void setInitialData() {
 
-        String query = "SELECT * FROM NoteData ORDER BY deadline ASC";
-        List<NoteData> all = App.getNoteRepository().runtimeQuery(new SimpleSQLiteQuery(query));
+//        String query = "SELECT * FROM NoteData ORDER BY deadline ASC";
+//        List<NoteData> all = App.getNoteRepository().runtimeQuery(new SimpleSQLiteQuery(query));
+
+        List<NoteData> all = App.getNoteRepository().getAll();
         if (!all.isEmpty()) {
             notes.addAll(all);
         } else {
@@ -89,12 +91,6 @@ public class NotesActivity extends AppCompatActivity implements ItemClickListene
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this,
-                "Номер id адаптера: " + adapter.getItem(position).getId()
-                        + "\nНомер id заметки: " + notes.get(position).getId()
-                + "\nЗаголовок: " + notes.get(position).getTitle()
-                + "\nстрочка " + position,
-                Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, NewNoteActivity.class);
         intent.putExtra("note", adapter.getItem(position).getId());
         startActivity(intent);
